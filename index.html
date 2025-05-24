@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calyx-MD - Pair Code Generator</title>
+  <title>Calyx-MD-Pair Code Generator</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <style>
     :root {
-  --primary-color: cyan;
+  --primary-color: black;
   --secondary-color: grey;
   --accent-color: #f0f0f0;
-  --text-color: grey;
-  --background-color: #ffffff;
+  --text-color: white;
+  --background-color: black;
   --hover-color: #f5f5f5;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color: springgreen;
 }
 
 * {
@@ -36,11 +36,11 @@ body {
 .container {
   width: 100%;
   max-width: 400px;
-  background: var(--background-color);
-  border-radius: 16px;
+  background: black;
+  color: white;
+  border-radius: 416px;
   padding: 25px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color);
+  box-shadow: 0 0 30px rgba(10, 255, 157, 8);
 }
 
 .header {
@@ -49,8 +49,8 @@ body {
 }
 
 .logo {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto 16px;
   background: var(--primary-color);
   border-radius: 50%;
@@ -59,19 +59,19 @@ body {
   justify-content: center;
   font-size: 28px;
   color: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 157, 1);
 }
 
 .title {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--primary-color);
+  color: springgreen;
 }
 
 .subtitle {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
+  color: white;
   margin-bottom: 20px;
 }
 
@@ -119,10 +119,10 @@ body {
 .input-field {
   width: 100%;
   padding: 12px;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid rgba(0, 255, 157, 3);
   border-radius: 12px;
-  background: var(--background-color);
-  color: var(--text-color);
+  background: lavender;
+  color: black;
   font-size: 15px;
 }
 
@@ -136,7 +136,8 @@ body {
   width: 100%;
   padding: 12px;
   background: var(--primary-color);
-  border: none;
+  border: 1px solid lime;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
   border-radius: 12px;
   color: var(--secondary-color);
   font-size: 15px;
@@ -152,7 +153,7 @@ body {
 }
 
 .code-display {
-  background: var(--hover-color);
+  background: lavender;
   padding: 12px;
   border-radius: 12px;
   text-align: center;
@@ -179,11 +180,13 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
 }
 
 .copy-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  background: black;
 }
 
 .copy-btn:hover:not(:disabled) {
@@ -230,7 +233,7 @@ body {
   text-align: center;
   margin-top: 20px;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
 @media (max-width: 480px) {
@@ -285,11 +288,11 @@ body {
       <i class="fas fa-spinner"></i>
     </div>
 
-    <div class="code-display" id="codeDisplay">
+    <div class="code-display" id="codeDisplay" style="color: black">
       Your pair code will appear here
     </div>
 
-    <button class="copy-btn" id="copy" onclick="copyCode()" disabled>
+    <button class="copy-btn" id="copy" style="color: white;"onclick="copyCode()" disabled>
       <i class="fas fa-copy"></i> Copy Code
     </button>
 
