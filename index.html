@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calyx-MD-Pair Code Generator</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/> 
   <style>
-    :root {
+      :root {
   --primary-color: black;
   --secondary-color: grey;
   --accent-color: #f0f0f0;
@@ -38,7 +38,7 @@ body {
   max-width: 400px;
   background: black;
   color: white;
-  border-radius: 416px;
+  border-radius: 16px;
   padding: 25px;
   box-shadow: 0 0 30px rgba(10, 255, 157, 8);
 }
@@ -139,7 +139,7 @@ body {
   border: 1px solid lime;
   box-shadow: 0 0 15px rgba(0, 255, 157, 3);
   border-radius: 12px;
-  color: var(--secondary-color);
+  color: white;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -170,7 +170,7 @@ body {
 .copy-btn {
   width: 100%;
   padding: 12px;
-  background: var(--hover-color);
+  background: black;
   border: 1.5px solid var(--border-color);
   border-radius: 12px;
   font-size: 15px;
@@ -183,13 +183,7 @@ body {
   box-shadow: 0 0 15px rgba(0, 255, 157, 3);
 }
 
-.copy-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  background: black;
-}
-
-.copy-btn:hover:not(:disabled) {
+.copy-btn:hover {
   background: var(--background-color);
   border-color: var(--primary-color);
 }
@@ -216,11 +210,12 @@ body {
   display: none;
   text-align: center;
   margin: 16px 0;
+  color: springgreen;
 }
 
 .loading i {
+  color: springgreen;
   font-size: 24px;
-  color: var(--primary-color);
   animation: spin 1s linear infinite;
 }
 
@@ -292,7 +287,7 @@ body {
       Your pair code will appear here
     </div>
 
-    <button class="copy-btn" id="copy" style="color: white;"onclick="copyCode()" disabled>
+    <button class="copy-btn" id="copy" style="color: white;"onclick="copyCode()" >
       <i class="fas fa-copy"></i> Copy Code
     </button>
 
@@ -321,7 +316,6 @@ body {
       copyBtn.disabled = true;
 
       try {
-        // Replace this URL with your Knight Bot API endpoint
         const apiUrl = `https://knight-bot-paircode.onrender.com/code?number=${encodeURIComponent(numberInput.replace(/[^0-9]/g, ''))}`;
         
         const response = await axios.get(apiUrl);
