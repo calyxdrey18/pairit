@@ -1,350 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calyx-MD-Pair Code Generator</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/> 
+  <meta charset="UTF-8">
+  <title>Calyx-MD Pair-Code Generator</title>
   <style>
-      :root {
-  --primary-color: black;
-  --secondary-color: grey;
-  --accent-color: #f0f0f0;
-  --text-color: white;
-  --background-color: black;
-  --hover-color: #f5f5f5;
-  --border-color: springgreen;
-}
+    body {
+      background: #0e0e0e;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    .container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 157, 23);
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-}
+    input[type="text"] {
+      padding: 10px;
+      width: 90%;
+      border: none;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
 
-.container {
-  width: 100%;
-  max-width: 400px;
-  background: black;
-  color: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 0 30px rgba(10, 255, 157, 8);
-}
+    button {
+      background: #00ff9d;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-.header {
-  text-align: center;
-  margin-bottom: 25px;
-}
+    button:hover {
+      background: #00d78c;
+    }
 
-.logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 16px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: white;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 1);
-}
+    #codeBox {
+      background: #111;
+      border: 2px dashed #00ff9d;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.4em;
+      margin-top: 15px;
+      user-select: all;
+    }
 
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: springgreen;
-}
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 15px;
+    }
 
-.subtitle {
-  font-size: 15px;
-  color: white;
-  margin-bottom: 20px;
-}
+    .social-icons a svg {
+      width: 30px;
+      height: 30px;
+      fill: #00ff9d;
+      transition: fill 0.2s;
+    }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.social-icons a {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 18px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.social-icons a.youtube { background: #FF0000; }
-.social-icons a.telegram { background: #0088cc; }
-.social-icons a.whatsapp { background: #0cfa10; }
-.social-icons a.github { background: #333; }
-
-.social-icons a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 13px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid rgba(0, 255, 157, 3);
-  border-radius: 12px;
-  background: lavender;
-  color: black;
-  font-size: 15px;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-}
-
-.generate-btn {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary-color);
-  border: 1px solid lime;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
-  border-radius: 12px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 16px;
-}
-
-.generate-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.code-display {
-  background: lavender;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.5px solid var(--border-color);
-}
-
-.copy-btn {
-  width: 100%;
-  padding: 12px;
-  background: black;
-  border: 1.5px solid var(--border-color);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 0 15px rgba(0, 255, 157, 3);
-}
-
-.copy-btn:hover {
-  background: var(--background-color);
-  border-color: var(--primary-color);
-}
-
-.success-message {
-  color: #000aff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 16px;
-}
-
-.error-message {
-  color: #e74c3c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-}
-
-.loading {
-  display: none;
-  text-align: center;
-  margin: 16px 0;
-  color: springgreen;
-}
-
-.loading i {
-  color: springgreen;
-  font-size: 24px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: white;
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .code-display {
-    font-size: 16px;
-    min-height: 50px;
-  }
-}
-
+    .social-icons a:hover svg {
+      fill: #00d78c;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div class="logo"><i class="fas fa-robot"></i></div>
-      <h1 class="title">Calyx-MD Bot</h1>
-      <p class="subtitle">Generate your WhatsApp pair code</p>
-      <div class="social-icons">
-        <a href="https://www.youtube.com/@CalyxDrey?sub_confirmation=1" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-        <a href="https://t.me/calyx_drey_hacks" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
-        <a href="https://whatsapp.com/channel/0029VagE9oHDp2Q34xE8S22c" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://github.com/calyxdrey18/Calyx-MD:V2" target="_blank" class="github"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
+    <h1>Calyx-MD Pair-Code Generator</h1>
+    <input type="text" id="numberInput" placeholder="Enter phone number with country code" />
+    <button onclick="generateCode()">Generate Pair Code</button>
 
-    <form id="pairCodeForm">
-      <div class="input-group">
-        <label class="input-label" for="mobileNumber">Enter your WhatsApp number with country code</label>
-        <input
-          type="text"
-          id="mobileNumber"
-          name="number"
-          class="input-field"
-          placeholder="+263716558758"
-          pattern="[+][0-9]{10,}"
-          title="Please enter country code starting with + followed by number"
-          required
-        />
-      </div>
+    <div id="codeBox" style="display:none;"></div>
+    <button id="copyBtn" style="display:none;" onclick="copyCode()">Copy Code</button>
 
-      <button type="submit" class="generate-btn">
-        <i class="fas fa-key"></i> Generate Pair Code
-      </button>
-    </form>
-
-    <div class="loading" id="loading" style="display:none;">
-      <i class="fas fa-spinner"></i>
-    </div>
-
-    <div class="code-display" id="codeDisplay" style="color: black">
-      Your pair code will appear here
-    </div>
-
-    <button class="copy-btn" id="copy" style="color: white;"onclick="copyCode()" >
-      <i class="fas fa-copy"></i> Copy Code
-    </button>
-
-    <div class="footer">
-      <p>© 2025 Calyx-Drey | Calyx-MD v2</p>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@CalyxDrey" target="_blank" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a2.985 2.985 0 0 0-2.098-2.108C19.646 3.5 12 3.5 12 3.5s-7.646 0-9.4.578A2.985 2.985 0 0 0 .502 6.186 29.94 29.94 0 0 0 0 12c0 1.961.219 3.843.502 5.814a2.985 2.985 0 0 0 2.098 2.108c1.754.578 9.4.578 9.4.578s7.646 0 9.4-.578a2.985 2.985 0 0 0 2.098-2.108A29.94 29.94 0 0 0 24 12a29.94 29.94 0 0 0-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VagE9oHDp2Q34xE8S22c" target="_blank" title="WhatsApp">
+        <svg viewBox="0 0 32 32"><path d="M16.004 2.667C8.637 2.667 2.671 8.632 2.671 16c0 2.822.749 5.565 2.173 7.979L2 30l6.238-2.808A13.249 13.249 0 0 0 16.004 29.333c7.367 0 13.333-5.966 13.333-13.333 0-7.368-5.966-13.333-13.333-13.333zm0 24.533a11.113 11.113 0 0 1-5.667-1.551l-.408-.244-3.7 1.666.782-3.887-.25-.4a11.052 11.052 0 0 1-1.695-5.784c0-6.13 4.987-11.113 11.113-11.113S27.117 9.87 27.117 16s-4.987 11.2-11.113 11.2zm6.112-8.422c-.333-.166-1.978-.978-2.287-1.089-.308-.112-.533-.166-.758.166-.224.333-.868 1.089-1.064 1.312-.196.224-.393.25-.726.084-.333-.166-1.406-.518-2.677-1.65-.99-.884-1.658-1.978-1.85-2.31-.196-.333-.022-.513.147-.678.151-.15.333-.392.497-.588.167-.196.224-.334.334-.558.111-.224.056-.42-.028-.588-.084-.166-.758-1.833-1.039-2.51-.272-.654-.548-.565-.758-.576h-.65c-.196 0-.513.073-.782.357-.27.285-1.026 1.002-1.026 2.442s1.051 2.827 1.198 3.024c.147.196 2.066 3.157 5.008 4.427.7.301 1.247.48 1.672.614.702.224 1.34.193 1.846.117.562-.084 1.978-.808 2.259-1.59.28-.782.28-1.452.196-1.59-.084-.137-.305-.221-.638-.388z"/></svg>
+      </a>
+      <a href="https://t.me/calyx_drey_hacks" target="_blank" title="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M9.993 16.546 9.83 19.49c.356 0 .511-.152.695-.332l1.67-1.62 3.465 2.545c.635.347 1.086.165 1.247-.586l2.26-10.64c.231-.978-.372-1.369-.992-1.13L3.1 10.6c-.956.369-.946.902-.164 1.14l4.94 1.544 11.44-7.09c.27-.17.518-.075.316.095L9.993 16.546z"/></svg>
+      </a>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    const form = document.getElementById('pairCodeForm');
-    const loading = document.getElementById('loading');
-    const codeDisplay = document.getElementById('codeDisplay');
-    const copyBtn = document.getElementById('copy');
+    async function generateCode() {
+      const number = document.getElementById("numberInput").value.trim();
+      const codeBox = document.getElementById("codeBox");
+      const copyBtn = document.getElementById("copyBtn");
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const numberInput = form.number.value.trim();
-      if (!numberInput) {
-        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Please enter your WhatsApp number</div>';
-        return;
-      }
-
-      loading.style.display = 'block';
-      codeDisplay.innerHTML = '';
-      copyBtn.disabled = true;
+      codeBox.style.display = "block";
+      codeBox.textContent = "Fetching code...";
+      copyBtn.style.display = "none";
 
       try {
-        const apiUrl = `https://knight-bot-paircode.onrender.com/code?number=${encodeURIComponent(numberInput.replace(/[^0-9]/g, ''))}`;
-        
-        const response = await axios.get(apiUrl);
+        const res = await fetch(`https://knight-bot-paircode.onrender.com/code?number=${encodeURIComponent(number)}`);
+        const data = await res.json();
 
-        // Assuming response.data.code contains the code
-        if (response.data.code) {
-          codeDisplay.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> CODE: ${response.data.code}</div>`;
-          copyBtn.disabled = false;
+        if (data && data.code) {
+          codeBox.textContent = data.code;
+          copyBtn.style.display = "inline-block";
         } else {
-          codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Code not received from API</div>';
+          codeBox.textContent = "Failed to retrieve code.";
         }
-      } catch (err) {
-        console.error(err);
-        codeDisplay.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> Error fetching code. Try again later.</div>';
-      } finally {
-        loading.style.display = 'none';
+      } catch {
+        codeBox.textContent = "Error fetching code.";
       }
-    });
+    }
 
     function copyCode() {
-      const text = codeDisplay.innerText.replace('CODE: ', '');
-      if (!text) return;
-
-      navigator.clipboard.writeText(text).then(() => {
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        setTimeout(() => {
-          copyBtn.innerHTML = originalText;
-        }, 2000);
+      const codeText = document.getElementById("codeBox").textContent;
+      navigator.clipboard.writeText(codeText).then(() => {
+        alert("Code copied to clipboard!");
       });
     }
   </script>
